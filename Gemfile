@@ -41,6 +41,9 @@ group :development, :test do
   gem 'selenium-webdriver'
 end
 
+gem 'bootstrap-sass'
+gem 'bcrypt'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -55,7 +58,6 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-byebug'
   gem 'pry-stack_explorer'
-  gem 'bootstrap-sass'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
