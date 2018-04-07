@@ -43,6 +43,8 @@ end
 
 gem 'bootstrap-sass'
 gem 'bcrypt'
+gem "carrierwave"
+# 画像投稿機能の作成に使用する。
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

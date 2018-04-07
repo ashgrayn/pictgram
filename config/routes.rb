@@ -1,13 +1,19 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
+  root 'pages#index'
+  get 'pages/help'
 
-root 'pages#index'
+  # 以下がどういった役割だったか、、
+  # get 'sessions/new'
 
-#pages/helpのみハッシュタグでないのはなぜ？アクションでないから？
- get 'pages/help'
- get '/login',    to: 'sessions#new'
- post '/login',   to: 'sessions#create'
- delete '/login', to: 'sessions#destroy'
+  get '/login',    to: 'sessions#new'
+  post '/login',   to: 'sessions#create'
+  delete '/login', to: 'sessions#destroy'
 
- resources 'users'
+  resources 'users'
+  resources 'topics'
 end
+
+# rails(rake) routes でチェックする
+# 上記のようなルーティングをした後に、対応するコントローラのアクションを定義する
+
+# GETは取得（こちらは表示）、POSTは作成、PATCHは更新
