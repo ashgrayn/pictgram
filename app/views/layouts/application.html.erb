@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TwitterKari</title>
+    <title>Pictgram</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,7 +18,7 @@
           <ul class="nav navbar-nav navbar-right">
             <% if logged_in? %>
               <li>
-                <%= link_to '#' do %>
+                <%= link_to favorites_index_path do %>
                   <%= image_tag 'icons/heart.png' %>
                 <% end %>
               </li>
@@ -28,8 +28,7 @@
                 <% end %>
               </li>
               <li>
-                <!--logout_path がない-->
-                <%= link_to login_path, method: :delete do %>
+                <%= link_to logout_path, method: :delete do %>
                   <%= image_tag 'icons/logout.png' %>
                 <% end %>
               </li>

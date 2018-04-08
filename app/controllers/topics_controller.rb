@@ -1,10 +1,13 @@
 class TopicsController < ApplicationController
   def index
-    @topics = Topic.all
+    @topics = Topic.all.includes(:favorite_users)
+    # N+1問題への対処として、includesメソッドを使う
+    @comments = Comment.all.includes(:favorite_users)
   end
 
   def new
     @topic = Topic.new
+    @comment = Comment.new
   end
 
   def create

@@ -15,9 +15,11 @@ h1, h2{
   background-color: rgba(0,0,0,0.0);
 
   &:hover{
-    color: #fff;
+    color: #00ffff;
   }
 }
+
+/*ボタンの枠も:hoverで青くしたい*/
 
 .top-hero-wrapper{
   width: 100vw;
@@ -97,7 +99,7 @@ form-control {
   font-size: 20px;
   background-color: rgba(0,0,0,0.0);
 
-  :hover{
+  &:hover{
     color: #565656
   }
 }

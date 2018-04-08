@@ -5,17 +5,39 @@
         <div class="col-md-6 col-md-offset-3 ">
           <div class="topic-index-single">
             <h2 class="topic-author">
-            <%= topic.user.name %>
+              <%= topic.user.name %>
             </h2>
+            <!--以下のコードは何を意味しているのか-->
             <%= image_tag topic.image.url %>
-            <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
-            <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+
+            <% if !topic.favorite_users.include?(current_user) %>
+              <%= link_to favorites_path(topic_id: topic.id), method: :post do %>
+              <!--pathの引数にシンボルを与えることで、link_toにパラメーターを渡すことができる-->
+                <%= image_tag 'icons/heart-black.png', class: 'topic-index-icon' %>
+              <% end %>
+            <% end %>
+            <!--こちらにはelse設定しない、trueの反対のfalseで表示されなくなるから-->
+            <%= link_to comments_path(topic_id: topic.id), method: :post do %>
+              <%= image_tag 'icons/comment.png', class: 'topic-index-icon' %>
+            <% end %>
+
             <p class="topic-text">
               <%= topic.description %>
             </p>
+
+            <% @comments.each do |comment| %>
+            <p class="comment-text">
+              <%= comment.description %>
+            </p>
+            <% end %>
+
           </div>
         </div>
       </div>
     <% end %>
   </div>
 </div>
+
+<!--favorite.controllerの params[:topic_id] に topic.id がはいる-->
+
+<!--N+1問題（ループごとにtopicをお気に入りしているユーザーを取得するSQLが走り、データベースへの処理が入ることで、処理が重くなってしまうこと）を防ぐためには、includesメソッドを使用する-->

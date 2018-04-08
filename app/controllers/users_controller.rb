@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     # binding.pry の代わり
     if @user.save
       redirect_to(root_path, notice: '登録が完了しました')
+      # noticeを変えれば表示画面を変えることができる
     else
       flash.now[:alert] = "登録に失敗しました"
       render :new

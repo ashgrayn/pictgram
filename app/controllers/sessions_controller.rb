@@ -9,8 +9,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       # ここでsession[:user_id]でログイン情報を保存している。
-      redirect_to root_path, alert: 'ログインに成功しました'
+      redirect_to pages_finished_path, alert: 'ログインに成功しました'
     else
+      # ログインに失敗されたことが反映されない。なぜ？
       flash.now[:danger] = "ログインに失敗しました"
       render 'new'
     end
@@ -23,12 +24,12 @@ class SessionsController < ApplicationController
 
 private
   def log_in(user)
-   session[:user_id] = user.id
+    session[:user_id] = user.id
   end
 
   def log_out
-  　session.delete(:user_id)
-  　@current_user = nil
+    session.delete(:user_id)
+    @current_user = nil
   end
 
 end
